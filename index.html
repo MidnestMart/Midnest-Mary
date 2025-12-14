@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midnest Mary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #111111;
+            --text-color: #ffffff;
+            --gray-color: #888888;
+            --border-color: #333333;
+            --accent-font: 'Anton', sans-serif; /* Для огромных заголовков */
+            --body-font: 'Inter', sans-serif;
+            --sub-font: 'Oswald', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--body-font);
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            z-index: 10;
+        }
+
+        .brand-top {
+            font-family: var(--body-font);
+            font-size: 0.9rem;
+            color: var(--gray-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .year {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: #fff; /* Белый фон как на референсе в верхней части */
+            color: #000;
+        }
+
+        /* Огромный текст на фоне */
+        .big-text-bg {
+            font-family: var(--accent-font);
+            font-size: 18vw;
+            line-height: 0.8;
+            text-transform: uppercase;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            z-index: 1;
+            opacity: 1;
+            color: #000;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Картинка по центру */
+        .hero-image-container {
+            position: relative;
+            z-index: 2;
+            height: 70%;
+            width: auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .hero-image {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(100%) contrast(120%);
+        }
+
+        .cta-btn {
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+            background: #000;
+            color: #fff;
+            padding: 15px 40px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 5;
+            border-radius: 4px;
+        }
+
+        .cta-btn::after {
+            content: "→";
+            margin-left: 10px;
+        }
+
+        /* --- MARQUEE (Бегущая строка) --- */
+        .marquee-container {
+            background: var(--bg-color);
+            color: var(--text-color);
+            padding: 10px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-family: var(--sub-font);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- WHO IS SECTION (Секция с описанием) --- */
+        .bio-section {
+            background-color: #1a1a1a; /* Темно-серый фон как на референсе */
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        /* Текст Midnest Mary Who Is? */
+        .mid-title {
+            font-family: var(--accent-font);
+            font-size: 12vw;
+            text-transform: uppercase;
+            color: #fff;
+            line-height: 0.9;
+            z-index: 2;
+            position: relative;
+            mix-blend-mode: overlay; /* Эффект наложения */
+            pointer-events: none;
+        }
+
+        .bio-text-block {
+            max-width: 600px;
+            margin-top: -50px; /* Наезд на заголовок */
+            z-index: 3;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .bio-text-block h3 {
+            font-family: var(--sub-font);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: #ccc;
+        }
+
+        .bio-text-block p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #eee;
+        }
+
+        /* Имитация фоновой картинки под текстом */
+        .bio-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            filter: grayscale(100%);
+            z-index: 1;
+        }
+
+        /* --- GRID SECTION (Языки программирования как товары) --- */
+        .skills-header {
+            background: #fff;
+            color: #000;
+            padding: 20px;
+            font-family: var(--sub-font);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #000;
+            font-size: 1.2rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+            background: #fff;
+        }
+
+        .grid-item {
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 350px;
+            position: relative;
+            transition: 0.3s;
+            color: #000;
+        }
+
+        .grid-item:hover {
+            background: #f5f5f5;
+        }
+
+        /* Вертикальный текст слева как на фото */
+        .grid-item::before {
+            content: "SKILL SET";
+            position: absolute;
+            left: 10px;
+            bottom: 20px;
+            transform: rotate(-90deg);
+            transform-origin: left bottom;
+            font-size: 0.7rem;
+            color: #999;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .item-visual {
+            font-family: var(--accent-font);
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        .item-info {
+            text-align: center;
+            width: 100%;
+        }
+
+        .item-name {
+            font-family: var(--sub-font);
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .item-desc {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .level-tag {
+            margin-top: 10px;
+            display: inline-block;
+            padding: 4px 8px;
+            border: 1px solid #000;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 60px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #333;
+        }
+
+        .footer-logo {
+            font-family: var(--accent-font);
+            font-size: 3rem;
+            text-transform: uppercase;
+        }
+
+        .footer-text h3 {
+            font-family: var(--sub-font);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        /* Стиль для ссылки VK */
+        .vk-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 3px;
+            transition: 0.3s;
+        }
+
+        .vk-link:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Адаптив для мобильных */
+        @media (max-width: 768px) {
+            .big-text-bg { font-size: 25vw; }
+            .grid-container { grid-template-columns: 1fr 1fr; }
+            .mid-title { font-size: 18vw; }
+            .bio-text-block { width: 90%; }
+            .cta-btn { left: 50%; transform: translateX(-50%); bottom: 5%; width: 80%; text-align: center; }
+            header { padding: 15px 20px; }
+            .hero-image { height: 50%; }
+            footer { flex-direction: column; text-align: center; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="brand-top">
+            Midnest Mary<br>
+            Portfolio
+        </div>
+        <div class="year">2024 / 2025</div>
+    </header>
+
+    <!-- Hero Section (White theme) -->
+    <section class="hero">
+        <div class="big-text-bg">MIDNEST MARY</div>
+        
+        <!-- Используем стилизованную картинку (placeholder) -->
+        <div class="hero-image-container">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" alt="Fashion Model" class="hero-image">
+        </div>
+
+        <a href="#bio" class="cta-btn">Who Is?</a>
+    </section>
+
+    <!-- Marquee Line -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            / PROGRAMMER / DEVELOPER / HTML / CSS / PYTHON / C# / MIDNEST MARY / CREATIVE CODING / PROGRAMMER / DEVELOPER / HTML / CSS / PYTHON / C# / MIDNEST MARY / CREATIVE CODING
+        </div>
+    </div>
+
+    <!-- Bio Section (Dark theme with big text overlay) -->
+    <section class="bio-section" id="bio">
+        <!-- Фоновое изображение для атмосферы -->
+        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000&auto=format&fit=crop" alt="Tech bg" class="bio-bg-image">
+        
+        <div class="mid-title">MIDNEST MARY<br>WHO IS?</div>
+
+        <div class="bio-text-block">
+            <h3>About Me</h3>
+            <p>
+                My name is Mary. I am a programmer, I speak the following languages: HTML, CSS, JavaScript, Python and C#. I am also familiar with C++ and PHP.
+            </p>
+            <div style="margin-top: 20px; border-top: 1px solid #fff; width: 50px;"></div>
+            <p style="font-size: 0.8rem; margin-top: 10px; color: #aaa;">CREATE YOUR OWN UNIQUE CODE</p>
+        </div>
+    </section>
+
+    <!-- Skills Grid (Styled like the product catalog) -->
+    <div class="skills-header">
+        / TECHNICAL STACK / BESTSELLERS / SKILLS
+    </div>
+
+    <section class="grid-container">
+        <!-- Skill 1 -->
+        <div class="grid-item">
+            <div class="item-visual">PY</div>
+            <div class="item-info">
+                <div class="item-name">Python</div>
+                <div class="item-desc">Backend & Data</div>
+                <div class="level-tag">Advanced</div>
+            </div>
+        </div>
+
+        <!-- Skill 2 -->
+        <div class="grid-item">
+            <div class="item-visual">JS</div>
+            <div class="item-info">
+                <div class="item-name">JavaScript</div>
+                <div class="item-desc">Frontend Interactive</div>
+                <div class="level-tag">Advanced</div>
+            </div>
+        </div>
+
+        <!-- Skill 3 -->
+        <div class="grid-item">
+            <div class="item-visual">C#</div>
+            <div class="item-info">
+                <div class="item-name">C-Sharp</div>
+                <div class="item-desc">Software Dev</div>
+                <div class="level-tag">Main Stack</div>
+            </div>
+        </div>
+
+        <!-- Skill 4 -->
+        <div class="grid-item">
+            <div class="item-visual">&lt;/&gt;</div>
+            <div class="item-info">
+                <div class="item-name">HTML / CSS</div>
+                <div class="item-desc">Layout & Style</div>
+                <div class="level-tag">Core</div>
+            </div>
+        </div>
+
+        <!-- Skill 5 -->
+        <div class="grid-item">
+            <div class="item-visual">C++</div>
+            <div class="item-info">
+                <div class="item-name">C++</div>
+                <div class="item-desc">System Programming</div>
+                <div class="level-tag">Familiar</div>
+            </div>
+        </div>
+
+        <!-- Skill 6 -->
+        <div class="grid-item">
+            <div class="item-visual">PHP</div>
+            <div class="item-info">
+                <div class="item-name">PHP</div>
+                <div class="item-desc">Backend Scripting</div>
+                <div class="level-tag">Familiar</div>
+            </div>
+        </div>
+        
+        <!-- Placeholder items -->
+        <div class="grid-item" style="background: #111; color: #fff;">
+            <div class="item-visual" style="color: #fff;">GIT</div>
+            <div class="item-info">
+                <div class="item-name">Version Control</div>
+                <div class="item-desc">Workflow</div>
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <div class="item-visual">DB</div>
+            <div class="item-info">
+                <div class="item-name">SQL</div>
+                <div class="item-desc">Databases</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-text">
+            <h3>Contacts</h3>
+            <a href="https://vk.com/stpvegr" target="_blank" class="vk-link">
+                VK: https://vk.com/stpvegr
+            </a>
+        </div>
+        <div class="footer-logo">
+            MIDNEST
+        </div>
+    </footer>
+
+</body>
+</html>
